@@ -55,8 +55,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/admin/pengaduan/{complaint}/status', [ComplaintController::class, 'adminUpdateStatus'])->name('admin.complaints.updateStatus');
     Route::delete('/admin/pengaduan/{complaint}', [ComplaintController::class, 'adminDestroy'])->name('admin.complaints.destroy');
 
-    // CRUD Resource Post
-    Route::resource('posts', PostController::class);
+    // CRUD Resource Post (except routes defined manually above & public show)
+    Route::resource('posts', PostController::class)->except(['create', 'store', 'show']);
 });
 
 require __DIR__ . '/auth.php';
