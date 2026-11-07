@@ -17,79 +17,79 @@
         </div>
     </x-slot>
 
-    <div class="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <div class="py-4 sm:py-8 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-4 sm:space-y-6">
 
         <!-- Flash Message Notification -->
         @if(session('success'))
-            <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 text-emerald-800 rounded-r-2xl text-xs sm:text-sm font-semibold shadow-sm">
+            <div class="p-3.5 sm:p-4 bg-emerald-50 border-l-4 border-emerald-500 text-emerald-800 rounded-r-2xl text-xs sm:text-sm font-semibold shadow-sm">
                 {{ session('success') }}
             </div>
         @endif
 
         <!-- Banner Sambutan Penulis (Navy #0b0146 & Red #ff0000 Accent) -->
-        <div class="bg-gradient-to-r from-[#0b0146] via-[#12036e] to-[#0b0146] rounded-3xl shadow-xl p-8 text-white flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
+        <div class="bg-gradient-to-r from-[#0b0146] via-[#12036e] to-[#0b0146] rounded-2xl sm:rounded-3xl shadow-xl p-5 sm:p-8 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-5 sm:gap-6 relative overflow-hidden">
             <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-[#ff0000]/15 rounded-full blur-2xl pointer-events-none"></div>
 
             <div class="relative z-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-slate-200 mb-3">
+                <div class="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-white/10 text-[10px] sm:text-xs font-semibold text-slate-200 mb-2 sm:mb-3">
                     <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
                     Akun Kontributor Aktif
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold mb-2 text-white">Halo, {{ Auth::user()->name }}! ✍️</h1>
+                <h1 class="text-xl sm:text-3xl font-extrabold mb-1.5 sm:mb-2 text-white">Halo, {{ Auth::user()->name }}! ✍️</h1>
                 <p class="text-slate-300 text-xs sm:text-sm max-w-xl leading-relaxed">
                     Setiap tulisan berita yang Anda buat akan ditinjau oleh tim redaksi kami sebelum diterbitkan secara resmi ke halaman portal publik.
                 </p>
             </div>
             
-            <div class="flex items-center gap-3 shrink-0 relative z-10 w-full sm:w-auto">
+            <div class="flex items-center gap-2.5 sm:gap-3 shrink-0 relative z-10 w-full sm:w-auto">
                 <a href="{{ route('home') }}" target="_blank"
-                    class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-5 py-3 rounded-xl transition text-xs sm:text-sm">
-                    Lihat Berita Terbit
+                    class="w-1/2 sm:w-auto text-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl transition text-xs sm:text-sm">
+                    Lihat Portal
                 </a>
                 <a href="{{ route('posts.create') }}"
-                    class="w-full sm:w-auto text-center bg-[#ff0000] hover:bg-[#d90000] text-white font-extrabold px-6 py-3 rounded-xl shadow-lg transition text-xs sm:text-sm">
+                    class="w-1/2 sm:w-auto text-center bg-[#ff0000] hover:bg-[#d90000] text-white font-extrabold px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-lg transition text-xs sm:text-sm">
                     + Buat Artikel
                 </a>
             </div>
         </div>
 
         <!-- Ringkasan Statistik Penulis (3 Card Grid) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             
             <!-- Total Artikel -->
-            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex items-center justify-between">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Total Artikel Anda</span>
-                    <span class="text-3xl font-extrabold text-[#0b0146]">{{ $myPosts->count() }}</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1">Total Artikel Anda</span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-[#0b0146]">{{ $myPosts->count() }}</span>
                 </div>
-                <div class="w-12 h-12 rounded-2xl bg-slate-100 text-[#0b0146] flex items-center justify-center font-bold">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slate-100 text-[#0b0146] flex items-center justify-center font-bold">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
                     </svg>
                 </div>
             </div>
 
             <!-- Menunggu Review -->
-            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex items-center justify-between">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">Menunggu Review (Pending)</span>
-                    <span class="text-3xl font-extrabold text-amber-600">{{ $myPosts->where('status', 'pending')->count() }}</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-amber-600 uppercase tracking-wider block mb-0.5 sm:mb-1">Menunggu Review</span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-amber-600">{{ $myPosts->where('status', 'pending')->count() }}</span>
                 </div>
-                <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
             </div>
 
             <!-- Terbit -->
-            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex items-center justify-between">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider block mb-1">Sudah Terbit (Published)</span>
-                    <span class="text-3xl font-extrabold text-emerald-600">{{ $myPosts->where('status', 'published')->count() }}</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-emerald-600 uppercase tracking-wider block mb-0.5 sm:mb-1">Sudah Terbit</span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-emerald-600">{{ $myPosts->where('status', 'published')->count() }}</span>
                 </div>
-                <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
@@ -98,14 +98,14 @@
         </div>
 
         <!-- Tabel Artikel Buatan Member -->
-        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
             
-            <div class="px-6 py-5 border-b border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="p-4 sm:px-6 sm:py-5 border-b border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                 <div>
-                    <h3 class="font-extrabold text-lg text-[#0b0146]">Daftar Artikel Saya</h3>
-                    <p class="text-xs text-slate-500 mt-0.5">Pantau status publikasi dan perbarui isi artikel tulisan Anda.</p>
+                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b0146]">Daftar Artikel Saya</h3>
+                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Pantau status publikasi dan perbarui isi artikel tulisan Anda.</p>
                 </div>
-                <a href="{{ route('posts.create') }}" class="bg-[#ff0000] hover:bg-[#d90000] text-white font-extrabold px-4 py-2 rounded-xl text-xs transition shadow-sm">
+                <a href="{{ route('posts.create') }}" class="bg-[#ff0000] hover:bg-[#d90000] text-white font-extrabold px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs transition shadow-sm">
                     + Tulis Artikel
                 </a>
             </div>
