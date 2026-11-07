@@ -40,9 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Manajemen Berita / Artikel
-    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    // Manajemen Berita / Artikel (create, store, edit, update, destroy)
+    Route::resource('posts', PostController::class)->except(['index', 'show']);
 
     // Moderasi Berita oleh Admin
     Route::get('/admin/posts/pending', [PostController::class, 'pendingPosts'])->name('admin.posts.pending');
@@ -54,9 +53,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/pengaduan/{complaint}', [ComplaintController::class, 'adminShow'])->name('admin.complaints.show');
     Route::patch('/admin/pengaduan/{complaint}/status', [ComplaintController::class, 'adminUpdateStatus'])->name('admin.complaints.updateStatus');
     Route::delete('/admin/pengaduan/{complaint}', [ComplaintController::class, 'adminDestroy'])->name('admin.complaints.destroy');
-
-    // CRUD Resource Post
-    Route::resource('posts', PostController::class);
 });
 
 require __DIR__ . '/auth.php';
