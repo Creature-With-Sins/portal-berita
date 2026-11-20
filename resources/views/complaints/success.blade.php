@@ -15,7 +15,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col justify-between" x-data="{ copied: false }">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col justify-between pb-16 md:pb-0" x-data="{ copied: false }">
 
     <!-- Header / Navbar Sederhana -->
     <header class="bg-[#0b0146] text-white shadow-md border-b border-white/10">
@@ -122,9 +122,12 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#0b0146] text-slate-400 py-6 border-t-2 border-[#ff0000] text-xs text-center">
+    <footer class="bg-[#0b0146] text-slate-400 py-6 border-t-2 border-[#ff0000] text-xs text-center pb-20 md:pb-6">
         <p>&copy; {{ date('Y') }} KAMJA Portal • Layanan Pengaduan Masyarakat</p>
     </footer>
+
+    <!-- MOBILE BOTTOM APP BAR (Fixed di HP) -->
+    <x-mobile-bottom-nav />
 
 </body>
 
