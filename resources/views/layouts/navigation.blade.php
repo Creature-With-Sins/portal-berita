@@ -103,40 +103,71 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-[#07002e] border-t border-white/10">
-        <div class="pt-2 pb-3 space-y-1 px-4">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-[#07002e] border-t border-white/10 shadow-2xl">
+        <div class="pt-3 pb-3 space-y-1.5 px-3">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
             @if(Auth::user()->role === 'admin')
-                <x-responsive-nav-link :href="route('admin.complaints.index')" :active="request()->routeIs('admin.complaints.*')" class="text-white">
-                    {{ __('Pengaduan Warga') }}
+                <x-responsive-nav-link :href="route('admin.complaints.index')" :active="request()->routeIs('admin.complaints.*')">
+                    <div class="flex items-center justify-between w-full">
+                        <span>{{ __('Pengaduan Warga') }}</span>
+                        @php
+                            $pendingComplaintsCount = \App\Models\Complaint::where('status', 'pending')->count();
+                        @endphp
+                        @if($pendingComplaintsCount > 0)
+                            <span class="bg-[#ff0000] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                {{ $pendingComplaintsCount }} Baru
+                            </span>
+                        @endif
+                    </div>
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.posts.pending')" :active="request()->routeIs('admin.posts.pending')" class="text-white">
-                    {{ __('Moderasi Berita') }}
+                <x-responsive-nav-link :href="route('admin.posts.pending')" :active="request()->routeIs('admin.posts.pending')">
+                    <div class="flex items-center justify-between w-full">
+                        <span>{{ __('Moderasi Berita') }}</span>
+                        @php
+                            $pendingPostsCount = \App\Models\Post::where('status', 'pending')->count();
+                        @endphp
+                        @if($pendingPostsCount > 0)
+                            <span class="bg-amber-400 text-slate-900 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                {{ $pendingPostsCount }}
+                            </span>
+                        @endif
+                    </div>
                 </x-responsive-nav-link>
             @endif
 
-            <x-responsive-nav-link :href="route('home')" target="_blank" class="text-slate-300">
-                {{ __('Lihat Portal Berita') }}
+            <x-responsive-nav-link :href="route('home')" target="_blank">
+                <div class="flex items-center justify-between">
+                    <span>{{ __('Lihat Portal Berita') }}</span>
+                    <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                </div>
             </x-responsive-nav-link>
         </div>
 
-        <div class="pt-4 pb-2 border-t border-white/10 px-4">
-            <div class="font-bold text-sm text-white">{{ Auth::user()->name }}</div>
-            <div class="text-xs text-slate-400">{{ Auth::user()->email }} ({{ ucfirst(Auth::user()->role) }})</div>
+        <div class="pt-3 pb-3 border-t border-white/10 px-4">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full {{ Auth::user()->role === 'admin' ? 'bg-[#ff0000]' : 'bg-emerald-400' }}"></span>
+                <span class="font-bold text-sm text-white">{{ Auth::user()->name }}</span>
+                <span class="text-[10px] bg-white/10 text-slate-300 px-2 py-0.5 rounded-full font-semibold">
+                    {{ ucfirst(Auth::user()->role) }}
+                </span>
+            </div>
+            <div class="text-xs text-slate-400 mb-3">{{ Auth::user()->email }}</div>
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')" class="text-slate-200">
-                    {{ __('Profile') }}
+            <div class="space-y-1">
+                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                    {{ __('Profile & Akun') }}
                 </x-responsive-nav-link>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
-                                        this.closest('form').submit();" class="text-[#ff0000] font-bold">
+                                        this.closest('form').submit();" class="!text-[#ff0000] hover:!bg-[#ff0000]/10 font-bold">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
